@@ -30,7 +30,7 @@ function game_start()
 }
 ```
 
-See the declaration below for the full list and explanation of the properties.
+See the declaration in the script header for the full list and explanation of the properties.
 
 The module relies on built-in AGS settings as far as possible. In particular, it uses these settings to customize the appearance and behavior of the speech bubbles:
 
