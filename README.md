@@ -1,5 +1,5 @@
 # SpeechBubble
-SpeechBubble is a script module for [Adventure Game Studio (AGS)](http://www.adventuregamestudio.co.uk/).
+SpeechBubble is a script module for [Adventure Game Studio (AGS)](http://www.adventuregamestudio.co.uk/). It requires AGS v3.4.0 or higher.
 
 This module allows you to display conversation text in comic book-style speech bubbles. The appearance of the speech bubbles can be extensively customized.
 
@@ -12,7 +12,7 @@ To use, you call Character.SayBubble(). For example:
 player.SayBubble("This line will be said in a speech bubble");
 ```
 
-You can also use `Character.SayAtBubble()` to position the bubble elsewhere on screen. `Character.ThinkBubble()` and `Character.SayBackgroundBubble()` ARE NOT YET IMPLEMENTED.
+You can also use `Character.SayAtBubble()` to position the bubble elsewhere on screen, and `Character.SayBackgroundBubble()` for non-blocking speech. `Character.ThinkBubble()` IS NOT YET IMPLEMENTED.
 
 To configure the appearance of the speech bubbles, you set the SpeechBubble properties. This is usually best done in GlobalScript `game_start()`. For example:
 
@@ -46,7 +46,9 @@ Note that to get text-based lip sync to work, you need to provide an invisible f
 
 Finally, the module (usually) calls `Character.Say()` to render speech animation and play voice clips. If you are already using some custom Say module (e.g. [TotalLipSync](https://github.com/messengerbag/TotalLipSync)), you may want to call a custom Say() function instead. To do this, simply change the function call in `SB_sayImpl()` at the top of SpeechBubble.asc.
 
-## License details 
+## License details
+Development of this module was funded by AGS forum member bx83, who agreed to make the code open-source. Thanks!
+
 This code is offered under the MIT License:
   https://opensource.org/licenses/MIT
 
