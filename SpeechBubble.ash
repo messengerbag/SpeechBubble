@@ -120,13 +120,15 @@ managed struct SpeechBubble
   import static attribute int PaddingLeft;              // $AUTOCOMPLETESTATICONLY$
   /// Pixels between the text and the right of speech bubbles. Default: 20
   import static attribute int PaddingRight;             // $AUTOCOMPLETESTATICONLY$
-  /// Pixels between the top of the character sprite and the bottom of the speech bubble tail (can be negative)
+  /// Pixels between the top of the character sprite and the bottom of the speech bubble tail (can be negative). Default: 0
   import static attribute int HeightOverHead;           // $AUTOCOMPLETESTATICONLY$
   /// How many pixels to round the corners of the speech bubble by. Default: 8
   import static attribute int CornerRoundingRadius;     // $AUTOCOMPLETESTATICONLY$
   
-  /// The speech bubble "tail" to use for talk bubbles ("Say" functions), as a String "pixel array". Must be null-terminated!
-  import static attribute String TalkTail[];            // $AUTOCOMPLETESTATICONLY$
+  /// Get the speech bubble "tail" to use for talk bubbles ("Say" functions), as a String "pixel array".
+  import static String[] GetTalkTail();                 // $AUTOCOMPLETESTATICONLY$
+  /// Set the speech bubble "tail" to use for talk bubbles ("Say" functions), as a String "pixel array". Must be null-terminated!
+  import static void SetTalkTail(String tail[]);        // $AUTOCOMPLETESTATICONLY$
   /// Get the width of the speech bubble tail for talk bubbles
   import readonly static attribute int TalkTailWidth;   // $AUTOCOMPLETESTATICONLY$
   /// Get the height of the speech bubble tail for talk bubbles

@@ -1,11 +1,11 @@
 # SpeechBubble Module API
 
 Sections:
-- [`Character` extender methods](#character-extender-methods)
-- [`SpeechBubble` static properties](#speechbubble-static-properties)
-- [`SpeechBubble` instance properties](#speechbubble-instance-properties)
-- [`TextOutlineStyle`](#textoutlinestyle)
-- [`DrawingSurface` extender method](#drawingsurface-extender-method)
+- [Character extender methods](#character-extender-methods)
+- [SpeechBubble static properties](#speechbubble-static-methods-and-properties)
+- [SpeechBubble instance properties](#speechbubble-instance-properties)
+- [TextOutlineStyle](#textoutlinestyle)
+- [DrawingSurface extender method](#drawingsurface-extender-method)
 
 ## Character extender methods
 
@@ -21,7 +21,7 @@ Like `Character.Say()`, but using a speech bubble.
 
 `void Character.SayAtBubble(int x, int y, String message, optional GUI* bubbleGui)`
 
-Like `SayBubble()`, but the bubble will be positioned with the top-left corner at the given coordinates
+Like `SayBubble()`, but the bubble will be positioned with the top-left corner at the given coordinates.
 
 ### Character.SayBackgroundBubble
 
@@ -59,7 +59,7 @@ Returns whether the character is speaking in a bubble.
 
 Returns the speech bubble used by the character (`null` if none).
 
-## SpeechBubble static properties
+## SpeechBubble static methods and properties
 
 These methods allow you to configure the appearance and behavior of speech bubbles in the game.
 
@@ -133,7 +133,7 @@ The width of the outline applied to speech bubble text. Default: 0 (none)
 
 `TextOutlineStyle SpeechBubble.TextOutlineStyle`
 
-The style of the outline applied to speech bubble text. Default: eTextOutlineRounded
+The style of the outline applied to speech bubble text. Default: `eTextOutlineRounded`
 
 ### SpeechBubble.MaxTextWidth
 
@@ -169,7 +169,7 @@ Pixels between the text and the right of speech bubbles. Default: 20
 
 `int SpeechBubble.HeightOverHead`
 
-Pixels between the top of the character sprite and the bottom of the speech bubble tail (can be negative)
+Pixels between the top of the character sprite and the bottom of the speech bubble tail (can be negative).  Default: 0
 
 ### SpeechBubble.CornerRoundingRadius
 
@@ -177,47 +177,113 @@ Pixels between the top of the character sprite and the bottom of the speech bubb
 
 How many pixels to round the corners of the speech bubble by. Default: 8
 
-### SpeechBubble.TalkTail
+### SpeechBubble.GetTalkTail()
 
-`String SpeechBubble.TalkTail[]`
+`String[] SpeechBubble.GetTalkTail()`
 
-The speech bubble "tail" to use for talk bubbles ("Say" functions), as a String "pixel array". Must be null-terminated!
+Get the speech bubble "tail" to use for talk bubbles ("Say" functions), as a String "pixel array".
+(See [SpeechBubble.SetTalkTail](#speechbubblesettalktail))
+
+### SpeechBubble.SetTalkTail
+
+`void SpeechBubble.TalkTail(String tail[])`
+
+Set the speech bubble "tail" to use for talk bubbles ("Say" functions), as a String "pixel array".
+
+A String pixel array is an array of strings, all of the same length, where each character represents a pixel. This allows you to draw the tail by editing the script. Use 'O' for background color, 'X' for border color and ' ' (space) for transparent. **The array must be null-terminated!**
+
+The default array looks like this:
+
+| **Array index** | **Content**  |
+|-----------------|--------------|
+| 0               | `"OOOOOOOO"` |
+| 1               | `"XOOOOOXX"` |
+| 2               | `"XOOOOX  "` |
+| 3               | `"XOOOOX  "` |
+| 4               | `" XOOOX  "` |
+| 5               | `" XOOOX  "` |
+| 6               | `"  XOOOX "` |
+| 7               | `"   XOOOX"` |
+| 8               | `"    XXX "` |
+| 9               | `null`       |
+
+Note that the top of the tail is aligned with the *inside* of the bubble border.
+
+Example of how to use:
+
+```
+  String tail[] = new String[7];
+  tail[0] = "OOOOOOOOO";
+  tail[1] = "XOOOOOOOX";
+  tail[2] = " XOOOOOX ";
+  tail[3] = "  XOOOX  ";
+  tail[4] = "   XOX   ";
+  tail[5] = "    X    ";
+  tail[6] = null;
+  SpeechBubble.SetTalkTail(tail);
+```
 
 ### SpeechBubble.TalkTailWidth
 
 `readonly int SpeechBubble.TalkTailWidth`
 
-Get the width of the speech bubble tail for talk bubbles
+Get the width of the speech bubble tail for talk bubbles.
 
 ### SpeechBubble.TalkTailHeight
 
 `readonly int SpeechBubble.TalkTailHeight`
 
-Get the height of the speech bubble tail for talk bubbles
+Get the height of the speech bubble tail for talk bubbles.
 
-### SpeechBubble.ThinkTail
+### SpeechBubble.GetThinkTail
 
-`String SpeechBubble.ThinkTail[]`
+`String[] SpeechBubble.GetThinkTail()`
 
-The speech bubble "tail" to use for thought bubbles ("Think" function), as a String "pixel array". Must be null-terminated!
+Get the speech bubble "tail" to use for thought bubbles ("Think" function), as a String "pixel array".
+
+### SpeechBubble.SetThinkTail
+
+`void SpeechBubble.SetThinkTail(String tail[])`
+
+Set The speech bubble "tail" to use for thought bubbles ("Think" function), as a String "pixel array".
+
+The default array looks like this:
+
+| **Array index** | **Content**  |
+|-----------------|--------------|
+| 0               | `"XXXXXXXX"` |
+| 1               | `"        "` |
+| 2               | `"  XX    "` |
+| 3               | `" XOOX   "` |
+| 4               | `"XOOOOX  "` |
+| 5               | `"XOOOOX  "` |
+| 6               | `" XOOX   "` |
+| 7               | `"  XX    "` |
+| 8               | `"        "` |
+| 9               | `"    XX  "` |
+| 10              | `"   XOOX "` |
+| 11              | `"    XX  "` |
+| 12              | `null`       |
+
+(See [SpeechBubble.SetTalkTail](#speechbubblesettalktail))
 
 ### SpeechBubble.ThinkTailWidth
 
 `readonly int SpeechBubble.ThinkTailWidth`
 
-Get the width of the speech bubble tail for think bubbles
+Get the width of the speech bubble tail for think bubbles.
 
 ### SpeechBubble.ThinkTailHeight
 
 `readonly int SpeechBubble.ThinkTailHeight`
 
-Get the height of the speech bubble tail for think bubbles
+Get the height of the speech bubble tail for think bubbles.
 
 ### SpeechBubble.TextAlign
 
 `Alignment SpeechBubble.TextAlign`
 
-The text alignment in speech bubbles. Default: eAlignCentre
+The text alignment in speech bubbles. Default: `eAlignCentre`
 
 ### SpeechBubble.InvisibleFont
 
@@ -269,13 +335,13 @@ Get whether the character is being (manually) animated.
 
 `readonly String SpeechBubble.Text`
 
-Get the text of this speech bubble
+Get the text of this speech bubble.
 
 ### SpeechBubble.BubbleSprite
 
 `readonly DynamicSprite* SpeechBubble.BubbleSprite`
 
-Get the rendered version of this speech bubble, as a DynamicSprite.
+Get the rendered version of this speech bubble, as a `DynamicSprite`.
 
 ### SpeechBubble.BubbleOverlay
 
@@ -330,4 +396,4 @@ This helper method is exposed in the API because it can be useful in other place
 
 `void DrawingSurface.DrawStringWrappedOutline(int x, int y, int width, TextOutlineStyle outlineStyle, FontType font,  Alignment alignment, String message, int transparency, int outlineColor, int outlineWidth)`
 
-Draw a string with outline (make sure the canvas has at least outlineWidth pixels on each side of the string)
+Draw a string with an outline. (Make sure the canvas has at least `outlineWidth` pixels on each side of the string.)

@@ -52,12 +52,12 @@ Finally, the module (usually) calls `Character.Say()` to render speech animation
   - [Character.SayBubble](docs/SpeechBubble.md#charactersaybubble)
   - [Character.SayAtBubble](docs/SpeechBubble.md#charactersayatbubble)
   - [Character.SayBackgroundBubble](docs/SpeechBubble.md#charactersaybackgroundbubble)
-  - [Character.ThinkBubble (NOT IMPLEMENTED)](docs/SpeechBubble.md#characterthinkbubble)
+  - [Character.ThinkBubble (NOT IMPLEMENTED)](docs/SpeechBubble.md#characterthinkbubble-not-implemented)  
   - [Character.GetHeight](docs/SpeechBubble.md#charactergetheight)
   - [Character.StopBackgroundBubble](docs/SpeechBubble.md#characterstopbackgroundbubble)
   - [Character.IsSpeakingBubble](docs/SpeechBubble.md#characterisspeakingbubble)
   - [Character.GetSpeechBubble](docs/SpeechBubble.md#charactergetspeechbubble)
-- [SpeechBubble static properties](docs/SpeechBubble.md#speechbubble-static-properties)
+- [SpeechBubble static methods and properties](docs/SpeechBubble.md#speechbubble-static-methods-and-properties)
   - [SpeechBubble.DefaultGui](docs/SpeechBubble.md#speechbubbledefaultgui)
   - [SpeechBubble.BackgroundColor](docs/SpeechBubble.md#speechbubblebackgroundcolor)
   - [SpeechBubble.BackgroundSpeechTint](docs/SpeechBubble.md#speechbubblebackgroundspeechtint)
@@ -77,10 +77,12 @@ Finally, the module (usually) calls `Character.Say()` to render speech animation
   - [SpeechBubble.PaddingRight](docs/SpeechBubble.md#speechbubblepaddingright)
   - [SpeechBubble.HeightOverHead](docs/SpeechBubble.md#speechbubbleheightoverhead)
   - [SpeechBubble.CornerRoundingRadius](docs/SpeechBubble.md#speechbubblecornerroundingradius)
-  - [SpeechBubble.TalkTail](docs/SpeechBubble.md#speechbubbletalktail)
+  - [SpeechBubble.GetTalkTail](docs/SpeechBubble.md#speechbubblegettalktail)
+  - [SpeechBubble.SetTalkTail](docs/SpeechBubble.md#speechbubblesettalktail)
   - [SpeechBubble.TalkTailWidth](docs/SpeechBubble.md#speechbubbletalktailwidth)
   - [SpeechBubble.TalkTailHeight](docs/SpeechBubble.md#speechbubbletalktailheight)
-  - [SpeechBubble.ThinkTail](docs/SpeechBubble.md#speechbubblethinktail)
+  - [SpeechBubble.GetThinkTail](docs/SpeechBubble.md#speechbubblegetthinktail)
+  - [SpeechBubble.SetThinkTail](docs/SpeechBubble.md#speechbubblesetthinktail)
   - [SpeechBubble.ThinkTailWidth](docs/SpeechBubble.md#speechbubblethinktailwidth)
   - [SpeechBubble.ThinkTailHeight](docs/SpeechBubble.md#speechbubblethinktailheight)
   - [SpeechBubble.TextAlign](docs/SpeechBubble.md#speechbubbletextalign)
@@ -108,8 +110,17 @@ Finally, the module (usually) calls `Character.Say()` to render speech animation
 
 * 0.9.0:
   * Updated to use API for AGS 3.6.0
+  * Changed API to use `SpeechBubble.GetTalkTail`, `.SetTalkTail`, `.GetThinkTail` and `.SetThinkTail`, to fix a bug
   * Exposed `DrawingSurface.DrawStringWrappedOutline()` as an extender function
   * Updated readme and API documentation
+* 0.8.0:
+  * Implemented Character.SayBackgroundBubble()
+  * Added SpeechBubble.DefaultGui property
+  * Fixed crash with characters that don't have a speech view set
+* 0.7.6:
+  * Fixed an issue with lines with speech clips in text-only mode
+* 0.7.5:
+  * Preliminary release
 
 ## License details
 Development of this module was funded by AGS forum member bx83, who agreed to make the code open-source. Thanks!
