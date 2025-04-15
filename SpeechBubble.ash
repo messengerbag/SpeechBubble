@@ -1,8 +1,8 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * SPEECH BUBBLE MODULE - Header                                                           *
- * by Gunnar Harboe (Snarky), v0.8.0                                                       *
+ * by Gunnar Harboe (Snarky), v0.9.0                                                       *
  *                                                                                         *
- * Copyright (c) 2017 Gunnar Harboe                                                        *
+ * Copyright (c) 2017, 2025 Gunnar Harboe                                                  *
  *                                                                                         *
  * This module allows you to display conversation text in comic book-style speech bubbles. *
  * The appearance of the speech bubbles can be extensively customized.                     *
@@ -190,7 +190,7 @@ managed struct SpeechBubble
   #endregion
 };
 
-#region Character Extender functions
+#region Character extender functions
 /// Like Character.Say(), but using a speech bubble.
 import void SayBubble(this Character*, String message, GUI* bubbleGui=0);
 /// Like SayBubble(), but the bubble will be positioned with the top-left corner at the given coordinates
@@ -208,4 +208,9 @@ import bool StopBackgroundBubble(this Character*);
 import bool IsSpeakingBubble(this Character*, bool includeBackground=true);
 /// The speech bubble used by the character (null if none)
 import SpeechBubble* GetSpeechBubble(this Character*);
+#endregion
+
+#region DrawingSurface extender functions
+/// Draw a string with outline (make sure the canvas has at least outlineWidth pixels on each side of the string)
+import void DrawStringWrappedOutline(this DrawingSurface*, int x, int y, int width, TextOutlineStyle outlineStyle, FontType font,  Alignment alignment, String message, int transparency, int outlineColor, int outlineWidth);
 #endregion
